@@ -5,7 +5,7 @@
 
 A pixel-art cat or dog that turns fuzzy wishes into good prompts, then clocks out and runs a campfire fantasy story with you. Vanilla HTML/CSS/JS, zero build, zero API keys.
 
-**▶ Live demo (no account needed):** https://YOUR-GITHUB-NAME.github.io/chat-and-you/
+**▶ Live demo (no account needed):** https://Khat822.github.io/chat-and-you/
 **Kiroween 2026 category:** Frankenstein: a prompt coach and a TRPG game master stitched into one app, living inside a developer console.
 
 ---
