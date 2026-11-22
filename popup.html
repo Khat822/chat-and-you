@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT. AND YOU.</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="sign">CHAT. AND YOU.</div>
+
+    <div class="card">
+        <div id="portrait" class="portrait" aria-hidden="true"></div>
+        <div class="facts">
+            <p><span class="k" data-t="status"></span><span id="status"></span></p>
+            <p><span class="k" data-t="mode"></span><span id="mode"></span></p>
+            <p><span class="k" data-t="companion"></span><span id="companion"></span></p>
+        </div>
+    </div>
+
+    <button id="open-aistudio" class="primary" data-t="openStudio"></button>
+    <button id="open-demo" data-t="openDemo"></button>
+    <button id="reset" data-t="reset"></button>
+
+    <p class="info" id="info"></p>
+
+    <script src="popup-i18n.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

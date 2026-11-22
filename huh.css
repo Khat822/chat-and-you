@@ -1,0 +1,44 @@
+/* ============================================
+   CHAT. AND YOU. - chips inside the speech bubble (huh.js)
+   Quiet on purpose: small link-like chips, not extra options.
+   ============================================ */
+.bubble-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+}
+
+.bubble-chips:not(:has(.bubble-chip:not([hidden]))) {
+    display: none;
+}
+
+.bubble-chip {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font: inherit;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: inherit;
+    opacity: 0.75;
+    background: transparent;
+    border: 2px dashed currentColor;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.bubble-chip:hover,
+.bubble-chip:focus-visible {
+    opacity: 1;
+    border-style: solid;
+}
+
+.bubble-chip:focus-visible {
+    outline: 2px solid #ff8fab;
+    outline-offset: 2px;
+}
+
+.bubble-chip[hidden],
+.speech-bubble.is-thinking .bubble-chips {
+    display: none;
+}

@@ -1,0 +1,1061 @@
+/* ============================================
+   CHAT. AND YOU. - Pixel Art Styles
+   ============================================ */
+
+:root {
+    --canteen-bg: #f4e4c1;
+    --canteen-warm: #ff9955;
+    --campfire-bg: #2a1a4a;
+    --campfire-orange: #ff6b35;
+    --neon-glow: #00ffff;
+    --text-dark: #2d2d2d;
+    --text-light: #f5f5f5;
+    --accent: #ff6b9d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-height: 100vh;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* ============================================
+   Main App Layout (Flexbox Column)
+   ============================================ */
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background 1s ease-in-out;
+    z-index: 0;
+}
+
+/* ============================================
+   Header Row (Signboard + Utilities)
+   ============================================ */
+
+.app-header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    z-index: 10;
+}
+
+/* ============================================
+   Companion Selector Modal
+   ============================================ */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.selector-content {
+    background: var(--canteen-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    border: 4px solid var(--text-dark);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.selector-content h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+}
+
+.companion-options {
+    display: flex;
+    gap: 2rem;
+}
+
+.companion-choice {
+    background: white;
+    border: 3px solid var(--text-dark);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    min-width: 200px;
+}
+
+.companion-choice:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+}
+
+.companion-preview {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cat-preview {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="10" y="12" width="12" height="12" fill="%23ff9966"/><rect x="8" y="8" width="4" height="4" fill="%23ff9966"/><rect x="20" y="8" width="4" height="4" fill="%23ff9966"/><rect x="12" y="16" width="2" height="2" fill="%23000"/><rect x="18" y="16" width="2" height="2" fill="%23000"/><rect x="14" y="20" width="4" height="2" fill="%23000"/></svg>');
+}
+
+.dog-preview {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="10" y="12" width="12" height="12" fill="%23d4a574"/><rect x="6" y="10" width="4" height="6" fill="%23d4a574"/><rect x="22" y="10" width="4" height="6" fill="%23d4a574"/><rect x="12" y="16" width="2" height="2" fill="%23000"/><rect x="18" y="16" width="2" height="2" fill="%23000"/><rect x="14" y="20" width="4" height="2" fill="%23000"/></svg>');
+}
+
+.companion-choice span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.companion-desc {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* ============================================
+   Main App Layout
+   ============================================ */
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background 1s ease-in-out;
+    z-index: 0;
+}
+
+.canteen-bg {
+    background: 
+        /* Warm wood texture simulation */
+        linear-gradient(90deg, rgba(210,180,140,0.3) 1px, transparent 1px),
+        linear-gradient(rgba(210,180,140,0.3) 1px, transparent 1px),
+        /* Warm base gradient */
+        linear-gradient(180deg, #f4e4c1 0%, #e8d4a8 50%, #ddc799 100%);
+    background-size: 50px 50px, 50px 50px, 100% 100%;
+    background-position: 0 0, 0 0, 0 0;
+}
+
+.campfire-bg {
+    background: linear-gradient(180deg, #2a1a4a 0%, #1a0a2a 100%);
+    background-image: 
+        radial-gradient(circle at 50% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+}
+
+/* ============================================
+   Canteen Mode
+   ============================================ */
+
+.mode-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   Wooden Signboard (in header, not overlapping)
+   ============================================ */
+
+.neon-sign {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    color: var(--neon-glow);
+    text-shadow: 
+        0 0 10px var(--neon-glow),
+        0 0 20px var(--neon-glow),
+        0 0 30px var(--neon-glow),
+        0 0 40px #0088ff;
+    animation: flicker 3s infinite;
+    letter-spacing: 0.3rem;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(180deg, #3d2817 0%, #5a3a1f 100%);
+    border: 4px solid #2a1a0f;
+    border-radius: 8px;
+    box-shadow: 
+        inset 0 2px 4px rgba(0,0,0,0.3),
+        0 4px 12px rgba(0,0,0,0.4);
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+    51% { opacity: 1; }
+    52% { opacity: 0.98; }
+    53% { opacity: 1; }
+}
+
+/* ============================================
+   Main Stage: 2-Column Grid Layout
+   ============================================ */
+
+.mode-container {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.stage-container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+/* ============================================
+   Left Column: Companion Stage
+   ============================================ */
+
+.companion-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.companion {
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: idle-bounce 2s ease-in-out infinite;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+}
+
+@keyframes idle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.companion.cat {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="20" y="24" width="24" height="24" fill="%23ff9966"/><rect x="16" y="16" width="8" height="8" fill="%23ff9966"/><rect x="40" y="16" width="8" height="8" fill="%23ff9966"/><rect x="24" y="32" width="4" height="4" fill="%23000"/><rect x="36" y="32" width="4" height="4" fill="%23000"/><rect x="28" y="40" width="8" height="4" fill="%23000"/><rect x="18" y="48" width="28" height="8" fill="%23e8e8e8"/></svg>');
+}
+
+.companion.dog {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="20" y="24" width="24" height="24" fill="%23d4a574"/><rect x="12" y="20" width="8" height="12" fill="%23d4a574"/><rect x="44" y="20" width="8" height="12" fill="%23d4a574"/><rect x="24" y="32" width="4" height="4" fill="%23000"/><rect x="36" y="32" width="4" height="4" fill="%23000"/><rect x="28" y="40" width="8" height="4" fill="%23000"/><rect x="24" y="48" width="16" height="6" fill="%23ff4444"/></svg>');
+}
+
+.companion.night.cat {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="20" y="24" width="24" height="24" fill="%23ff9966"/><rect x="16" y="16" width="8" height="8" fill="%23ff9966"/><rect x="40" y="16" width="8" height="8" fill="%23ff9966"/><rect x="24" y="32" width="4" height="4" fill="%23000"/><rect x="36" y="32" width="4" height="4" fill="%23000"/><rect x="28" y="40" width="8" height="4" fill="%23000"/><rect x="16" y="22" width="32" height="8" fill="%234a4a4a"/></svg>');
+}
+
+.companion.night.dog {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="20" y="24" width="24" height="24" fill="%23d4a574"/><rect x="12" y="20" width="8" height="12" fill="%23d4a574"/><rect x="44" y="20" width="8" height="12" fill="%23d4a574"/><rect x="24" y="32" width="4" height="4" fill="%23000"/><rect x="36" y="32" width="4" height="4" fill="%23000"/><rect x="28" y="40" width="8" height="4" fill="%23000"/><circle cx="50" cy="30" r="6" fill="%23ffdd44" opacity="0.8"/></svg>');
+}
+
+/* ============================================
+   Waiting animation: tail wag + paw prints (toe beans)
+   ============================================ */
+
+.companion {
+    position: relative;
+}
+
+/* Pixel tail on the sprite's right side; idles slowly, wags while thinking */
+.companion::after {
+    content: '';
+    position: absolute;
+    left: 82px;
+    top: 66px;
+    width: 8px;
+    height: 24px;
+    transform-origin: 50% 100%;
+    image-rendering: pixelated;
+}
+
+.companion.dog::after {
+    background: #d4a574;
+    box-shadow: inset -2px 0 0 #b8875a;
+    animation: tail-wag-idle 1s ease-in-out infinite alternate;
+}
+
+.companion.cat::after {
+    background: #ff9966;
+    box-shadow: inset -2px 0 0 #e07a45;
+    border-radius: 0 4px 0 0;
+    animation: tail-swish 2.4s ease-in-out infinite alternate;
+}
+
+.companion.dog.thinking::after {
+    animation: tail-wag-fast 0.18s linear infinite alternate;
+}
+
+.companion.cat.thinking::after {
+    animation: tail-swish 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes tail-wag-idle {
+    from { transform: rotate(-8deg); }
+    to   { transform: rotate(12deg); }
+}
+
+@keyframes tail-wag-fast {
+    from { transform: rotate(-28deg); }
+    to   { transform: rotate(28deg); }
+}
+
+@keyframes tail-swish {
+    0%   { transform: rotate(-6deg); }
+    60%  { transform: rotate(22deg); }
+    100% { transform: rotate(10deg); }
+}
+
+/* Three pixel paw prints that pop in one by one, like footsteps */
+.paw-loader {
+    display: none;
+    align-items: flex-end;
+    gap: 10px;
+    height: 30px;
+    margin-top: 0.75rem;
+}
+
+.speech-bubble.is-thinking .paw-loader {
+    display: flex;
+}
+
+.paw-loader span {
+    width: 22px;
+    height: 22px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Cg fill='%23ff8fab'%3E%3Crect x='1' y='4' width='2' height='2'/%3E%3Crect x='3' y='1' width='2' height='2'/%3E%3Crect x='7' y='1' width='2' height='2'/%3E%3Crect x='9' y='4' width='2' height='2'/%3E%3Crect x='4' y='5' width='4' height='1'/%3E%3Crect x='3' y='6' width='6' height='4'/%3E%3Crect x='4' y='10' width='4' height='1'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+    image-rendering: pixelated;
+    opacity: 0;
+    animation: paw-step 1.5s ease-out infinite;
+}
+
+.paw-loader span:nth-child(1) { margin-bottom: 0; transform: rotate(-12deg); }
+.paw-loader span:nth-child(2) { margin-bottom: 8px; animation-delay: 0.3s; }
+.paw-loader span:nth-child(3) { margin-bottom: 0; animation-delay: 0.6s; }
+
+@keyframes paw-step {
+    0%   { opacity: 0; }
+    12%  { opacity: 1; }
+    65%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#campfire-mode .paw-loader span {
+    filter: drop-shadow(0 0 3px rgba(255, 143, 171, 0.8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .companion::after,
+    .paw-loader span {
+        animation: none !important;
+        opacity: 1;
+    }
+}
+
+.companion-base {
+    width: 160px;
+    height: 12px;
+    background: linear-gradient(180deg, rgba(139, 69, 19, 0.3) 0%, rgba(139, 69, 19, 0.1) 100%);
+    border-radius: 50%;
+    margin-top: -8px;
+}
+
+.transition-button {
+    background: var(--accent);
+    color: white;
+    border: 3px solid var(--text-dark);
+    padding: 1rem 1.5rem;
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+}
+
+.transition-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.transition-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+#campfire-mode .transition-button {
+    background: var(--canteen-warm);
+}
+
+/* "Today's Special": secondary, menu-board look */
+.special-button {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.8rem 1.25rem;
+    background: #fff3c4;
+    color: var(--text-dark);
+    border: 3px dashed var(--text-dark);
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s, background 0.15s;
+}
+
+.special-button:hover {
+    background: #ffe27a;
+    transform: rotate(-2deg) scale(1.03);
+}
+
+/* ============================================
+   Right Column: Dialogue Area
+   ============================================ */
+
+.dialogue-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ============================================
+   Speech Bubble (with left-pointing tail)
+   ============================================ */
+
+.speech-bubble {
+    background: white;
+    border: 4px solid var(--text-dark);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    min-height: 100px;
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 30px;
+    border: 12px solid transparent;
+    border-right-color: var(--text-dark);
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 34px;
+    border: 8px solid transparent;
+    border-right-color: white;
+}
+
+#campfire-mode .speech-bubble {
+    background: rgba(42, 26, 74, 0.9);
+    color: var(--text-light);
+    border-color: var(--campfire-orange);
+}
+
+#campfire-mode .speech-bubble::before {
+    border-right-color: var(--campfire-orange);
+}
+
+#campfire-mode .speech-bubble::after {
+    border-right-color: rgba(42, 26, 74, 0.9);
+}
+
+#message-text, #message-text-night {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+#message-text-night {
+    color: var(--text-light);
+}
+
+/* ============================================
+   ABCD Options
+   ============================================ */
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.option-btn {
+    background: white;
+    border: 3px solid var(--text-dark);
+    padding: 1rem 1.5rem 1rem 3.5rem; /* 左邊留空給徽章 */
+    font-size: 1rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+}
+
+.option-btn::before {
+    content: attr(data-option);
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--text-dark);
+    color: white;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.option-btn:hover {
+    background: var(--canteen-warm);
+    transform: translateX(4px);
+}
+
+#campfire-mode .option-btn {
+    background: rgba(42, 26, 74, 0.8);
+    color: var(--text-light);
+    border-color: var(--campfire-orange);
+}
+
+/* Multi-pick: option + its ＋ toggle on one row (multipick.js) */
+.option-row {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.option-row .option-btn {
+    flex: 1;
+}
+
+.pick-toggle {
+    flex: 0 0 52px;
+    border: 3px solid var(--text-dark);
+    background: white;
+    color: var(--text-dark);
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pick-toggle[aria-pressed="true"],
+.option-btn.picked {
+    background: #ffd1e8;
+}
+
+.pick-toggle[aria-pressed="true"] {
+    color: var(--accent);
+}
+
+.option-btn.picked {
+    box-shadow: inset 0 0 0 3px var(--accent);
+}
+
+#campfire-mode .pick-toggle {
+    background: rgba(42, 26, 74, 0.8);
+    color: var(--text-light);
+    border-color: var(--campfire-orange);
+}
+
+#campfire-mode .pick-toggle[aria-pressed="true"],
+#campfire-mode .option-btn.picked {
+    background: rgba(255, 107, 53, 0.45);
+}
+
+#campfire-mode .option-btn:hover {
+    background: rgba(255, 107, 53, 0.3);
+}
+
+.option-d-container {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px dashed var(--text-dark);
+    border-radius: 8px;
+}
+
+#campfire-mode .option-d-container {
+    background: rgba(42, 26, 74, 0.5);
+    border-color: var(--campfire-orange);
+}
+
+.option-d-container label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+#campfire-mode .option-d-container label {
+    color: var(--text-light);
+}
+
+/* Option D: multi-line, grows with the text (app.js), scrolls past ~40% of the screen */
+#option-d, #option-d-night {
+    display: block;
+    width: 100%;
+    min-height: 3.2em;
+    max-height: 40vh;
+    padding: 0.75rem;
+    border: 2px solid var(--text-dark);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 1rem;           /* 16px: no zoom-on-focus on phones */
+    line-height: 1.5;
+    resize: vertical;
+    overflow-y: auto;
+    margin-bottom: 0.5rem;
+}
+
+#submit-d, #submit-d-night {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#submit-d:hover, #submit-d-night:hover {
+    background: #ff4477;
+}
+
+/* ============================================
+   Responsive: Stack on Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    .stage-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .neon-sign {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+    }
+    
+    .companion-stage {
+        order: 2;
+    }
+    
+    .dialogue-column {
+        order: 1;
+    }
+    
+    .speech-bubble::before,
+    .speech-bubble::after {
+        display: none;
+    }
+    
+    .utility-buttons {
+        position: static;
+        transform: none;
+        margin-top: 12px;
+    }
+    
+    #demo-indicator {
+        position: static;
+        transform: none;
+        margin-bottom: 12px;
+    }
+    
+    .app-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* ============================================
+   Campfire Canvas (in companion stage)
+   ============================================ */
+
+.campfire {
+    margin-top: 20px;
+}
+
+/* ============================================
+   Dragon Transition
+   ============================================ */
+
+#dragon-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: none;
+}
+
+/* ============================================
+   Kiro Order Ticket Modal
+   ============================================ */
+
+.modal-content.ticket {
+    background: #fffef0;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 4px dashed var(--text-dark);
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content.ticket {
+    position: relative;
+}
+
+/* Big, obvious close button pinned to the ticket's top-right corner */
+.modal-close {
+    /* sticky keeps it visible while the ticket scrolls; translate pulls it
+       into the corner (negative margins don't move sticky boxes) */
+    position: sticky;
+    top: 0;
+    float: right;
+    transform: translate(1.4rem, -1.4rem);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 3px solid var(--text-dark);
+    background: var(--accent);
+    color: white;
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-size: 1.3rem;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: transform 0.15s, background 0.15s;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+    background: #ff4477;
+    transform: translate(1.4rem, -1.4rem) scale(1.1);
+    outline: none;
+}
+
+.modal-content.ticket h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.ticket-body {
+    margin-bottom: 1.5rem;
+}
+
+.ticket-section {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-left: 4px solid var(--accent);
+}
+
+.ticket-section h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+/* "Done When": written by the companion, shown as a friendly checklist */
+.ticket-section.ticket-done {
+    border-left-color: #3fa66a;
+    background: #f1fbf4;
+}
+
+.ticket-section.ticket-done h3 {
+    color: #2e7d4f;
+}
+
+.ticket-section[hidden] {
+    display: none;
+}
+
+.ticket-section p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+#ticket-copyable {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border: 2px solid var(--text-dark);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+    margin-bottom: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.modal-actions button {
+    padding: 1rem 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 3px solid var(--text-dark);
+    font-weight: bold;
+}
+
+#copy-ticket {
+    background: var(--accent);
+    color: white;
+}
+
+#close-ticket {
+    background: white;
+    color: var(--text-dark);
+}
+
+/* ============================================
+   Utility Buttons (Demo, Reset, Settings)
+   ============================================ */
+
+#demo-indicator {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 107, 157, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--text-dark);
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    border-radius: 4px;
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.85rem;
+}
+
+.utility-buttons {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 12px;
+}
+
+.settings-button,
+.reset-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid var(--text-dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+    color: white;
+}
+
+.settings-button {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Language picker (header + companion selector) */
+.lang-select {
+    height: 50px;
+    padding: 0 0.75rem;
+    border: 3px solid var(--text-dark);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Download-chat button in the header (same look as ⚙️) */
+.export-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid var(--text-dark);
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.export-button:hover {
+    transform: translateY(2px);
+}
+
+/* Humor level toggle: 🧂 mild / 🌶️ normal */
+.spice-button {
+    height: 50px;
+    padding: 0 0.9rem;
+    border: 3px solid var(--text-dark);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.spice-button[aria-pressed="true"] {
+    background: #ffe0d1;
+}
+
+/* ✕ on the companion selector: pinned to the card's top-right corner */
+.selector-content {
+    position: relative;
+}
+
+.selector-content .modal-close {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    float: none;
+    transform: none;
+}
+
+.selector-content .modal-close:hover,
+.selector-content .modal-close:focus-visible {
+    transform: scale(1.1);
+}
+
+.selector-content .lang-select {
+    display: block;
+    height: 40px;
+    margin: -1.5rem 0 1rem auto;
+}
+
+.settings-button:hover {
+    transform: rotate(90deg);
+}
+
+.reset-button {
+    background: rgba(255, 107, 157, 0.9);
+}
+
+.reset-button:hover {
+    transform: rotate(-90deg);
+    background: #ff4477;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ============================================
+   Responsive: Stack on Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    .stage-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .neon-sign {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+    }
+    
+    .companion-stage {
+        order: 2;
+    }
+    
+    .dialogue-column {
+        order: 1;
+    }
+    
+    .speech-bubble::before,
+    .speech-bubble::after {
+        display: none;
+    }
+    
+    .utility-buttons {
+        position: static;
+        transform: none;
+        margin-top: 12px;
+    }
+    
+    #demo-indicator {
+        position: static;
+        transform: none;
+        margin-bottom: 12px;
+    }
+    
+    .app-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+}

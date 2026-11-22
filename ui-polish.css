@@ -1,0 +1,188 @@
+/* ============================================
+   CHAT. AND YOU. - RPG window polish (loaded last; delete this file's <link>
+   to get the old look back). Scoped under #app (the root in both the demo and
+   the extension). Canteen = walnut + amber trim, campfire = obsidian + fire rim.
+   ============================================ */
+#app {
+    --ui-bg: rgba(36, 22, 14, 0.88);
+    --ui-strip: rgba(36, 22, 14, 0.72);
+    --ui-trim: #e0a64a;
+    --ui-glow: rgba(255, 196, 110, 0.55);
+    --ui-text: #f6ecd9;
+    --ui-ink: #120a06;
+}
+#app #campfire-mode {
+    --ui-bg: rgba(15, 18, 30, 0.88);
+    --ui-strip: rgba(15, 18, 30, 0.72);
+    --ui-trim: #ff8a3d;
+    --ui-glow: rgba(255, 120, 50, 0.55);
+    --ui-ink: #05060c;
+}
+
+/* 1. Grounding vignette: the lower scene darkens into the UI plane */
+#app #background.canteen-bg::after {
+    background: linear-gradient(180deg, transparent 50%, rgba(40, 22, 10, 0.55) 100%);
+}
+#app #background.campfire-bg::after {
+    background: linear-gradient(180deg, transparent 45%, rgba(10, 10, 28, 0.65) 100%);
+}
+
+/* 2. Three-layer pixel frame: dark outline, metal trim, sunken inner shadow */
+#app .speech-bubble,
+#ticket-modal .modal-content.ticket {
+    border: 3px solid var(--ui-ink, #120a06);
+    border-radius: 4px;
+    box-shadow:
+        0 0 0 3px var(--ui-trim, #e0a64a),
+        0 0 0 6px var(--ui-ink, #120a06),
+        inset 0 0 0 2px rgba(0, 0, 0, 0.5),
+        inset 0 6px 14px rgba(0, 0, 0, 0.45),
+        0 10px 24px rgba(0, 0, 0, 0.45);
+}
+#app .speech-bubble {
+    background: var(--ui-bg);
+    color: var(--ui-text);            /* chips inherit it */
+    margin: 6px;
+}
+#app #message-text,
+#app #message-text-night { color: var(--ui-text); }
+/* Firelight along the top edge at the campfire */
+#app #campfire-mode .speech-bubble {
+    box-shadow:
+        0 -4px 14px -2px var(--ui-glow),
+        0 0 0 3px var(--ui-trim),
+        0 0 0 6px var(--ui-ink),
+        inset 0 2px 0 rgba(255, 170, 90, 0.35),
+        inset 0 6px 14px rgba(0, 0, 0, 0.45),
+        0 10px 24px rgba(0, 0, 0, 0.5);
+}
+/* Tail: trim-coloured outline, body-coloured fill */
+#app .speech-bubble::before { left: -22px; border-right-color: var(--ui-trim); }
+#app .speech-bubble::after { left: -13px; border-right-color: var(--ui-ink); }
+
+/* 3. Nameplate straddling the bottom of the portrait frame */
+#app .companion { position: relative; }
+/* Daytime pixel flames float at the portrait's corner instead of taking
+   140px of height (they used to push the mode buttons down) */
+#app .companion-stage { position: relative; }
+#app .campfire {
+    position: absolute;
+    top: 176px;
+    left: calc(50% + 84px);
+    width: 64px;
+    height: 80px;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(255, 140, 50, 0.6));
+}
+#app .companion::after {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: auto;
+    bottom: -14px;
+    transform: translateX(-50%);
+    transform-origin: 50% 50%;
+    width: auto;
+    height: auto;
+    white-space: nowrap;
+    border-radius: 0;
+    padding: 3px 12px;
+    font: bold 0.8rem 'Silkscreen', 'Courier New', monospace;
+    letter-spacing: 0.15em;
+    color: var(--ui-text);
+    background: var(--ui-bg);
+    border: 2px solid var(--ui-ink);
+    box-shadow: 0 0 0 2px var(--ui-trim), 0 3px 0 2px var(--ui-ink);
+    animation: none;
+    opacity: 1;
+}
+#app .companion.cat::after { content: 'CAT'; }
+#app .companion.dog::after { content: 'DOG'; }
+
+/* 4. Command strips: translucent, gold ◆ cursor on hover/focus */
+#app .option-btn,
+#app .pick-toggle {
+    background: var(--ui-strip);
+    color: var(--ui-text);
+    border: 2px solid var(--ui-ink);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(2px);
+}
+#app .option-btn::before {
+    background: var(--ui-trim);
+    color: var(--ui-ink);
+}
+#app .option-btn::after {
+    content: '◆';
+    position: absolute;
+    left: -1.25rem;
+    color: var(--ui-trim);
+    text-shadow: 0 0 6px var(--ui-glow);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+#app .option-btn:hover,
+#app .option-btn:focus-visible,
+#app .pick-toggle:hover,
+#app .pick-toggle:focus-visible {
+    background: var(--ui-strip);
+    border-color: var(--ui-trim);
+    box-shadow: 0 0 10px var(--ui-glow), inset 0 0 0 1px var(--ui-trim);
+    outline: none;
+}
+#app .option-btn:hover,
+#app .option-btn:focus-visible { transform: translateX(4px); }
+#app .option-btn:hover::after,
+#app .option-btn:focus-visible::after { opacity: 1; }
+#app .option-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
+/* Multi-pick ✓ keeps a clear "chosen" look */
+#app .option-btn.picked,
+#app .pick-toggle[aria-pressed="true"] {
+    background: rgba(224, 166, 74, 0.35);
+    border-color: var(--ui-trim);
+    box-shadow: inset 0 0 0 2px var(--ui-trim);
+}
+#app .pick-toggle[aria-pressed="true"] { color: var(--ui-text); }
+
+/* Option D: a sunken journal panel at the bottom of the same window */
+#app .option-d-container {
+    background: rgba(18, 10, 6, 0.55);
+    border: 2px solid var(--ui-ink);
+    border-radius: 2px;
+    box-shadow: 0 0 0 2px var(--ui-trim), inset 0 4px 10px rgba(0, 0, 0, 0.5);
+    margin: 0.75rem 4px 4px;
+}
+#app .option-d-container label { color: var(--ui-text); }
+#app #option-d,
+#app #option-d-night {
+    background: #f3e6c8;           /* parchment, dark ink: easy to read */
+    color: #2b1d12;
+    border: 2px solid var(--ui-ink);
+    box-shadow: inset 0 2px 6px rgba(80, 50, 20, 0.35);
+}
+#app #option-d:focus-visible,
+#app #option-d-night:focus-visible {
+    outline: 3px solid var(--ui-trim);
+    outline-offset: 1px;
+}
+
+/* Ticket keeps its paper look, framed like the rest */
+#ticket-modal .modal-content.ticket { --ui-trim: #e0a64a; --ui-ink: #120a06; }
+
+/* Bigger, easier-to-read text (AI Studio often runs in a narrow window) */
+#app #message-text,
+#app #message-text-night { font-size: 1.25rem; line-height: 1.65; }
+#app .option-btn { font-size: 1.1rem; }
+#app .option-btn::before { width: 30px; height: 30px; font-size: 1rem; }
+#app .bubble-chip { font-size: 0.9rem; }
+#app .option-d-container label { font-size: 1rem; }
+#app .transition-button,
+#app .euphoria-btn { font-size: 1rem; }
+#app #submit-d,
+#app #submit-d-night { font-size: 1.05rem; }
+
+@media (prefers-reduced-motion: reduce) {
+    #app .option-btn:hover,
+    #app .option-btn:focus-visible { transform: none; }
+}

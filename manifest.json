@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "CHAT. AND YOU.",
+  "version": "1.0.0",
+  "description": "Transform AI prompting into casual conversation. Canteen mode builds perfect prompts, Campfire mode plays dynamic TRPG stories.",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://aistudio.google.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://aistudio.google.com/*"],
+      "js": [
+        "i18n/i18n.js",
+        "i18n/en.js", "i18n/zh-TW.js", "i18n/zh-CN.js", "i18n/ja.js",
+        "i18n/ko.js", "i18n/es.js", "i18n/fr.js", "i18n/de.js",
+        "euphoria.js", "safety.js", "transcript.js", "story-export.js", "theme.js", "multipick.js", "huh.js",
+        "i18n/lore-latin.js", "i18n/lore-cjk.js", "lore-forge.js", "lore-sample.js", "lore-import.js",
+        "app.js", "bridge-parse.js", "bridge-prompts.js", "content.js", "bridge-tab.js", "overlay.js"
+      ],
+      "css": ["styles.css", "euphoria.css", "artwork.css", "huh.css", "lore-import.css", "ui-polish.css", "ui-chrome.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "index.html",
+        "lore-shuffler.js",
+        "demo-scripts.js",
+        "lore-packs/*.json",
+        "assets/img/*"
+      ],
+      "matches": ["https://aistudio.google.com/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CHAT. AND YOU."
+  }
+}

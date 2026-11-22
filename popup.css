@@ -1,0 +1,74 @@
+/* CHAT. AND YOU. - extension popup, same RPG look as the overlay (ui-polish.css) */
+* { box-sizing: border-box; }
+html { background: #24160d; }
+body {
+    width: 320px;
+    margin: 0;
+    padding: 18px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    color: #f6ecd9;
+    background: radial-gradient(circle at 50% 0%, #4a2f1c 0%, #24160d 70%);
+}
+.sign {
+    margin: 0 auto 14px;
+    padding: 8px 12px;
+    text-align: center;
+    font: bold 1.1rem 'Courier New', monospace;
+    letter-spacing: 0.2em;
+    color: #7ff8ff;
+    text-shadow: 0 0 6px #00e5ff, 0 0 14px #0088ff;
+    background: rgba(20, 12, 8, 0.6);
+    border: 1px solid rgba(218, 165, 90, 0.45);
+}
+.card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 14px;
+    background: rgba(36, 22, 14, 0.88);
+    border: 2px solid #120a06;
+    box-shadow: 0 0 0 2px #e0a64a, 0 0 0 4px #120a06, inset 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.portrait {
+    flex: 0 0 72px;
+    height: 72px;
+    background: #1c140e center / cover no-repeat;
+    border: 2px solid #120a06;
+    box-shadow: 0 0 0 2px #e0a64a;
+}
+.portrait.empty::after {
+    content: '?';
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: 2rem;
+    color: #e0a64a;
+}
+.facts p { margin: 4px 0; font-size: 0.85rem; line-height: 1.4; }
+.k { display: block; font-size: 0.7rem; color: #e0a64a; letter-spacing: 0.05em; }
+.ok { color: #8fe39a; }
+.warn { color: #ffb36b; }
+button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font: bold 0.95rem 'Courier New', monospace;
+    color: #f6ecd9;
+    background: rgba(28, 18, 12, 0.85);
+    border: 2px solid #120a06;
+    box-shadow: 0 0 0 2px rgba(218, 165, 90, 0.75), 3px 4px 0 2px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+button:hover:not(:disabled) { background: rgba(60, 40, 24, 0.95); }
+button.primary { background: linear-gradient(180deg, #a8362a 0%, #7a1f1a 100%); }
+button.primary:hover { background: linear-gradient(180deg, #c2432f 0%, #8e261e 100%); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button:focus-visible { outline: 2px solid #ffd27a; outline-offset: 3px; }
+.info {
+    margin: 6px 0 0;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: center;
+    color: rgba(246, 236, 217, 0.65);
+}

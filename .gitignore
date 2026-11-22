@@ -1,0 +1,34 @@
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+.cache/
+
+# 4K source art (~100 MB). The app uses the compressed copies in assets/img.
+4K/
+
+# Extension packaging
+*.zip
+*.crx
+*.pem
+
+# Optional: if you add node_modules later
+node_modules/
+package-lock.json
+
+# Old notes and drafts, kept locally only
+_archive/

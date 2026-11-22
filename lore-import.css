@@ -1,0 +1,129 @@
+/* ============================================
+   CHAT. AND YOU. - worldbook import window (lore-import.js)
+   Reuses .modal / .modal-close / .modal-actions from styles.css
+   ============================================ */
+.modal.hidden { display: none; }
+
+.modal-content.lore {
+    position: relative;
+    width: min(640px, 92vw);
+    max-height: 86vh;
+    overflow-y: auto;
+    padding: 1.75rem;
+    background: #2b2233;
+    color: #f6ecd9;
+    border: 4px solid #f2b45a;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(242, 140, 40, 0.35);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+.modal-content.lore h2 {
+    margin-bottom: 1rem;
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #ffd27a;
+}
+
+.lore-active {
+    margin-bottom: 0.75rem;
+    text-align: center;
+    color: #ffd27a;
+}
+
+.lore-step {
+    margin-bottom: 1.1rem;
+    padding: 1rem;
+    border: 2px dashed rgba(246, 236, 217, 0.35);
+}
+
+.lore-label {
+    display: block;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+
+#lore-text {
+    width: 100%;
+    min-height: 8rem;
+    padding: 0.75rem;
+    font: inherit;
+    font-size: 0.9rem;
+    color: #2b2233;
+    background: #fffef0;
+    border: 3px solid #f2b45a;
+    resize: vertical;
+}
+
+.lore-note {
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+.lore-btn,
+.lore-preview .modal-actions button,
+.lore-link {
+    padding: 0.7rem 1.2rem;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    color: #2b2233;
+    background: #f6ecd9;
+    border: 3px solid #120d16;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+}
+
+.lore-primary,
+.lore-preview .modal-actions .lore-primary {
+    color: #fff;
+    background: #e8743b;
+}
+
+.lore-btn:disabled,
+.lore-preview button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.lore-btn:focus-visible,
+.lore-preview button:focus-visible,
+.lore-link:focus-visible,
+#lore-text:focus-visible {
+    outline: 3px solid #ffd27a;
+    outline-offset: 2px;
+}
+
+.lore-status {
+    min-height: 1.5em;
+    margin: 0.5rem 0;
+    color: #ffd27a;
+}
+
+.lore-summary {
+    margin: 0 0 1rem;
+    padding-left: 1.2rem;
+    line-height: 1.6;
+}
+
+.lore-link {
+    display: block;
+    margin: 1rem auto 0;
+    background: transparent;
+    color: #f6ecd9;
+    border-style: dashed;
+    box-shadow: none;
+}
+
+.lore-preview[hidden],
+.lore-link[hidden],
+.lore-preview button[hidden] {
+    display: none;
+}
+
+/* Campfire stage button */
+.lore-import-btn {
+    margin-top: 0.5rem;
+}

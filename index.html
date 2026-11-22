@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT. AND YOU.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="euphoria.css">
+    <link rel="stylesheet" href="artwork.css">
+    <link rel="stylesheet" href="huh.css">
+    <link rel="stylesheet" href="lore-import.css">
+    <link rel="stylesheet" href="ui-polish.css">
+    <link rel="stylesheet" href="ui-chrome.css">
+</head>
+<body>
+    <!-- Companion Selector (shown on first visit) -->
+    <div id="companion-selector" class="modal">
+        <div class="selector-content" role="dialog" aria-labelledby="selector-title">
+            <!-- Hidden on the first visit (a choice is required), shown when switching -->
+            <button id="close-selector-x" class="modal-close" type="button" data-i18n-title="ui.close" hidden>✕</button>
+            <select class="lang-select" data-i18n-title="ui.language"></select>
+            <h2 id="selector-title" data-i18n="ui.chooseCompanion">Choose Your Companion</h2>
+            <div class="companion-options">
+                <button class="companion-choice" data-companion="cat">
+                    <div class="companion-preview cat-preview"></div>
+                    <span data-i18n="ui.cat">Cat 貓貓</span>
+                    <p class="companion-desc" data-i18n="ui.catDesc">Chill, concise, gently sarcastic</p>
+                </button>
+                <button class="companion-choice" data-companion="dog">
+                    <div class="companion-preview dog-preview"></div>
+                    <span data-i18n="ui.dog">Dog 狗狗</span>
+                    <p class="companion-desc" data-i18n="ui.dogDesc">Warm, enthusiastic, encouraging</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="hidden">
+        <!-- Header Row -->
+        <header class="app-header">
+            <!-- Demo Mode Indicator (top-left) -->
+            <div id="demo-indicator" class="hidden" data-i18n="ui.demoMode">DEMO MODE</div>
+            
+            <!-- Wooden Signboard (center). Brand name: never translated -->
+            <div class="neon-sign">CHAT. AND YOU.</div>
+            
+            <!-- Utility Buttons (top-right) -->
+            <div class="utility-buttons">
+                <select class="lang-select" data-i18n-title="ui.language"></select>
+                <!-- Humor level for AI replies (hidden in the scripted demo) -->
+                <button id="spice-btn" class="spice-button" type="button"></button>
+                <button id="theme-btn" class="export-button" type="button" data-i18n-title="ui.themeHint" aria-pressed="false">☀️</button>
+                <button class="export-btn export-button" type="button" data-i18n-title="ui.exportHint">📥</button>
+                <button id="reset-btn" class="reset-button" data-i18n-title="ui.reset">🔄</button>
+                <button id="settings-btn" class="settings-button" data-i18n-title="ui.settings">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Background Layer -->
+        <div id="background" class="canteen-bg"></div>
+
+        <!-- Dragon Transition Animation -->
+        <div id="dragon-flyover" class="hidden" aria-hidden="true"></div>
+
+        <!-- Canteen Mode -->
+        <div id="canteen-mode" class="mode-container">
+            <div class="stage-container">
+                <!-- Left Column: Companion Stage -->
+                <div class="companion-stage">
+                    <div id="companion-sprite" class="companion"></div>
+                    <div class="companion-base"></div>
+                    <!-- 🌿 Catnip / 🎾 Squeaky Ball mode (label set by euphoria.js) -->
+                    <button class="euphoria-btn" type="button" aria-pressed="false"></button>
+                    <!-- Surprise opener ("Today's Special"): a curated random question -->
+                    <button id="special-btn" class="special-button" data-i18n="ui.special" data-i18n-title="ui.specialHint">🎲 Today's Special</button>
+                    <!-- English text is the steering label; other languages are translated -->
+                    <button id="transition-btn" class="transition-button" data-i18n="ui.offTheClock">Off the clock: Let's talk Dragons & Magic</button>
+                </div>
+
+                <!-- Right Column: Dialogue Area -->
+                <div class="dialogue-column">
+                    <div id="speech-bubble" class="speech-bubble">
+                        <p id="message-text"></p>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" id="option-a" data-option="a"></button>
+                        <button class="option-btn" id="option-b" data-option="b"></button>
+                        <button class="option-btn" id="option-c" data-option="c"></button>
+                        <div class="option-d-container">
+                            <label for="option-d" data-i18n="ui.optionD">Option D: Write it myself</label>
+                            <textarea id="option-d" rows="2" data-i18n-placeholder="ui.placeholder" placeholder="Type your own response..."></textarea>
+                            <button id="submit-d" data-i18n="ui.send">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campfire Mode -->
+        <div id="campfire-mode" class="mode-container hidden">
+            <div class="stage-container">
+                <!-- Left Column: Companion Stage -->
+                <div class="companion-stage">
+                    <div id="companion-sprite-night" class="companion night"></div>
+                    <canvas id="campfire-canvas" class="campfire"></canvas>
+                    <button class="euphoria-btn" type="button" aria-pressed="false"></button>
+                    <button id="lore-import-btn" class="transition-button lore-import-btn" type="button" data-i18n="lore.btn">📜 Import a worldbook</button>
+                    <button id="return-canteen" class="transition-button" data-i18n="ui.returnCanteen">Back to the Canteen</button>
+                </div>
+
+                <!-- Right Column: Dialogue Area -->
+                <div class="dialogue-column">
+                    <div id="speech-bubble-night" class="speech-bubble">
+                        <p id="message-text-night"></p>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" id="option-a-night" data-option="a"></button>
+                        <button class="option-btn" id="option-b-night" data-option="b"></button>
+                        <button class="option-btn" id="option-c-night" data-option="c"></button>
+                        <div class="option-d-container">
+                            <label for="option-d-night" data-i18n="ui.optionD">Option D: Write it myself</label>
+                            <textarea id="option-d-night" rows="2" data-i18n-placeholder="ui.placeholder" placeholder="Type your own response..."></textarea>
+                            <button id="submit-d-night" data-i18n="ui.send">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kiro Order Ticket Modal -->
+    <div id="ticket-modal" class="modal hidden">
+        <div class="modal-content ticket" role="dialog" aria-labelledby="ticket-title">
+            <button id="close-ticket-x" class="modal-close" type="button" data-i18n-title="ui.close">✕</button>
+            <h2 id="ticket-title" data-i18n="ui.ticketTitle">🎫 Kiro Order Ticket</h2>
+            <div class="ticket-body">
+                <div class="ticket-section">
+                    <h3 data-i18n="ui.summary">Task Summary</h3>
+                    <p id="ticket-summary"></p>
+                </div>
+                <div class="ticket-section">
+                    <h3 data-i18n="ui.input">Input Format</h3>
+                    <p id="ticket-input"></p>
+                </div>
+                <div class="ticket-section">
+                    <h3 data-i18n="ui.output">Output Format</h3>
+                    <p id="ticket-output"></p>
+                </div>
+                <div class="ticket-section">
+                    <h3 data-i18n="ui.constraints">Constraints</h3>
+                    <p id="ticket-constraints"></p>
+                </div>
+                <div class="ticket-section">
+                    <h3 data-i18n="ui.antipatterns">Anti-Patterns (Avoid)</h3>
+                    <p id="ticket-antipatterns"></p>
+                </div>
+                <div class="ticket-section ticket-done">
+                    <h3 data-i18n="ui.done">Done When</h3>
+                    <p id="ticket-done"></p>
+                </div>
+            </div>
+            <textarea id="ticket-copyable" readonly></textarea>
+            <div class="modal-actions">
+                <button id="copy-ticket" data-i18n="ui.copy">📋 Copy Ticket</button>
+                <button id="close-ticket" data-i18n="ui.startOver">Start Over</button>
+                <button class="export-btn" type="button" data-i18n="ui.export" data-i18n-title="ui.exportHint">📥 Download chat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts: i18n core, language packs, then the app -->
+    <script src="i18n/i18n.js"></script>
+    <script src="i18n/en.js"></script>
+    <script src="i18n/zh-TW.js"></script>
+    <script src="i18n/zh-CN.js"></script>
+    <script src="i18n/ja.js"></script>
+    <script src="i18n/ko.js"></script>
+    <script src="i18n/es.js"></script>
+    <script src="i18n/fr.js"></script>
+    <script src="i18n/de.js"></script>
+    <script src="euphoria.js"></script>
+    <script src="safety.js"></script>
+    <script src="transcript.js"></script>
+    <script src="story-export.js"></script>
+    <script src="theme.js"></script>
+    <script src="multipick.js"></script>
+    <script src="huh.js"></script>
+    <script src="i18n/lore-latin.js"></script>
+    <script src="i18n/lore-cjk.js"></script>
+    <script src="lore-forge.js"></script>
+    <script src="lore-sample.js"></script>
+    <script src="lore-import.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

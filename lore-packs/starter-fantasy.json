@@ -1,0 +1,183 @@
+{
+  "worldbook_name": "Shattered Crowns",
+  "version": "1.0.0",
+  "description": "A classic fantasy realm where three factions vie for control after the old empire collapsed, and wild magic threatens to consume everything.",
+  
+  "factions": [
+    {
+      "id": "iron_council",
+      "name": "The Iron Council",
+      "description": "Pragmatic former generals who seized power promising order and stability",
+      "goals": [
+        "Maintain martial law",
+        "Suppress wild magic users",
+        "Rebuild the empire's infrastructure"
+      ],
+      "tensions": [
+        "Internal corruption is weakening their legitimacy",
+        "Conflict with the Mage's Circle over magic prohibition",
+        "Military forces stretched thin across too many territories"
+      ]
+    },
+    {
+      "id": "mages_circle",
+      "name": "The Mage's Circle",
+      "description": "Ancient order of mages who believe magic should be freely studied and practiced",
+      "goals": [
+        "Preserve magical knowledge",
+        "Prevent another magical cataclysm",
+        "Achieve autonomy from military rule"
+      ],
+      "tensions": [
+        "Divided between conservative and radical factions",
+        "Hunted by Iron Council enforcers",
+        "Some members experimenting with forbidden rituals"
+      ]
+    },
+    {
+      "id": "free_cities",
+      "name": "The Free Cities Alliance",
+      "description": "Coalition of merchant republics seeking independence and prosperity",
+      "goals": [
+        "Maintain trade routes",
+        "Stay neutral in magical conflicts",
+        "Prevent any single faction from dominating"
+      ],
+      "tensions": [
+        "Economic rivalry between member cities causing fractures",
+        "Secret deals with both Iron Council and Mage's Circle",
+        "Smuggling operations enabling black market magic"
+      ]
+    },
+    {
+      "id": "twilight_cult",
+      "name": "Twilight Pilgrims",
+      "description": "Mysterious religious movement claiming the old gods are returning",
+      "goals": [
+        "Prepare for the prophesied 'Second Dawn'",
+        "Convert non-believers",
+        "Acquire ancient artifacts"
+      ],
+      "tensions": [
+        "Increasingly aggressive recruitment tactics",
+        "Rumored to be harboring dangerous artifacts",
+        "Leadership may be influenced by otherworldly entities"
+      ]
+    }
+  ],
+  
+  "locations": [
+    {
+      "id": "ashwood",
+      "name": "Ashwood Crossing",
+      "description": "A frontier town at the edge of Iron Council territory",
+      "atmosphere": "Tense, lawless at night, refugees flood in daily"
+    },
+    {
+      "id": "crystalspire",
+      "name": "Crystalspire Ruins",
+      "description": "Former Mage's Circle academy, now a haunted ruin after a ritual went wrong",
+      "atmosphere": "Eerie, magical anomalies, treasure hunters disappear here"
+    },
+    {
+      "id": "silverhaven",
+      "name": "Silverhaven Port",
+      "description": "Wealthiest of the Free Cities, built on trade and secrets",
+      "atmosphere": "Bustling, cosmopolitan, everyone has an agenda"
+    },
+    {
+      "id": "ironhold",
+      "name": "Ironhold Fortress",
+      "description": "The Iron Council's seat of power, a repurposed imperial fortress",
+      "atmosphere": "Militaristic, oppressive, rigidly hierarchical"
+    },
+    {
+      "id": "whispering_forest",
+      "name": "The Whispering Forest",
+      "description": "Ancient woodland where reality is thin and spirits walk",
+      "atmosphere": "Mystical, dangerous, time flows strangely"
+    },
+    {
+      "id": "ember_monastery",
+      "name": "Ember Monastery",
+      "description": "Twilight Pilgrims' hidden sanctuary in the mountains",
+      "atmosphere": "Serene but unsettling, chanting echoes day and night"
+    }
+  ],
+  
+  "twists": [
+    {
+      "id": "twist_betrayal",
+      "trigger": "climax",
+      "description": "Your trusted companion is actually a spy for the Iron Council, sent to monitor your activities"
+    },
+    {
+      "id": "twist_artifact",
+      "trigger": "climax",
+      "description": "The artifact you've been seeking is cursed and will doom whoever wields it to become a vessel for an ancient evil"
+    },
+    {
+      "id": "twist_identity",
+      "trigger": "climax",
+      "description": "You are actually the lost heir to the fallen empire, and all factions have been manipulating you"
+    },
+    {
+      "id": "twist_magic",
+      "trigger": "climax",
+      "description": "The wild magic surges aren't natural — someone is deliberately destabilizing reality as part of a ritual"
+    },
+    {
+      "id": "twist_prophecy",
+      "trigger": "climax",
+      "description": "The Twilight Pilgrims' prophecy is real, but it predicts destruction, not salvation"
+    }
+  ],
+  
+  "starter_hooks": [
+    {
+      "id": "hook_tavern",
+      "opening": "You wake up in a tavern with no memory of last night. Your coin pouch is gone, but there's a strange glowing amulet in your pocket. The bartender is staring at you nervously.",
+      "initial_options": [
+        "Ask the bartender what happened last night",
+        "Examine the amulet more closely",
+        "Check outside for any clues"
+      ]
+    },
+    {
+      "id": "hook_ambush",
+      "opening": "You're traveling through Ashwood Crossing when Iron Council soldiers stop your cart. They're searching for 'magic contraband.' Your cargo is legitimate, but there's a hidden compartment you didn't know about...",
+      "initial_options": [
+        "Cooperate fully and hope for the best",
+        "Try to bribe the soldiers",
+        "Create a distraction and flee"
+      ]
+    },
+    {
+      "id": "hook_letter",
+      "opening": "A hooded stranger slips you a sealed letter in the market, then vanishes into the crowd. The letter bears the seal of the Mage's Circle and contains coordinates to Crystalspire Ruins along with a cryptic message: 'They know what you are.'",
+      "initial_options": [
+        "Go to Crystalspire Ruins immediately",
+        "Try to find the hooded stranger",
+        "Burn the letter and pretend this never happened"
+      ]
+    },
+    {
+      "id": "hook_prophecy",
+      "opening": "You've been having the same dream for a week: a voice calling your name from the Whispering Forest, promising answers about your past. Tonight, you wake to find fresh mud on your boots and a map to the forest on your nightstand. You don't remember drawing it.",
+      "initial_options": [
+        "Follow the map into the Whispering Forest",
+        "Seek help from a local priest or healer",
+        "Investigate who might have entered your room"
+      ]
+    },
+    {
+      "id": "hook_rescue",
+      "opening": "While traveling, you hear screams from a nearby wagon under attack by bandits. As you approach, you realize one of the captives is wearing Mage's Circle robes and seems to be trying to cast a spell despite having their hands bound.",
+      "initial_options": [
+        "Charge in and fight the bandits",
+        "Try to negotiate with the bandits",
+        "Help the mage break free with magic"
+      ]
+    }
+  ]
+}

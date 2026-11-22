@@ -1,0 +1,122 @@
+/* ============================================
+   CHAT. AND YOU. - toolbar, side buttons, sign and compact layout
+   (loaded after ui-polish.css). Goal: no white pills or hot-pink stickers,
+   and a lower, tighter UI so the art (campfire, neon sign) stays visible.
+   ============================================ */
+#app {
+    --wood: rgba(28, 18, 12, 0.78);
+    --wood-hi: rgba(52, 34, 20, 0.88);
+    --gold: rgba(218, 165, 90, 0.75);
+    --cream: #f6ecd9;
+    --ember: linear-gradient(180deg, #a8362a 0%, #7a1f1a 100%);
+    --ember-hi: linear-gradient(180deg, #c2432f 0%, #8e261e 100%);
+}
+
+/* ---------- Compact layout, docked low ---------- */
+#app .app-header { margin-bottom: 10px; }
+/* Sits just under the header on every screen size (docking it low left a
+   big empty band at the top on tall windows) */
+#app .stage-container { margin-top: clamp(0px, 2vh, 20px); gap: 24px; }
+#app .mode-container { display: flex; flex-direction: column; }
+#app .dialogue-column { gap: 0.7rem; }
+#app .speech-bubble { padding: 1rem 1.25rem; min-height: 0; }
+#app .options-container { gap: 0.45rem; }
+#app .option-btn { min-height: 44px; padding-top: 0.55rem; padding-bottom: 0.55rem; }
+#app .companion-stage { gap: 12px; }
+
+/* Option D: one compact row, Send on the right */
+#app .option-d-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 0.6rem;
+    align-items: end;
+    padding: 0.6rem 0.75rem;
+    margin-top: 0.25rem;
+}
+#app .option-d-container label { grid-column: 1 / -1; margin-bottom: 0; }
+#app #option-d,
+#app #option-d-night {
+    min-height: 2.7em;
+    margin-bottom: 0;
+    background: rgba(12, 10, 14, 0.65);
+    color: var(--cream);
+    border: 2px solid var(--ui-ink);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+#app #option-d::placeholder,
+#app #option-d-night::placeholder { color: rgba(246, 236, 217, 0.55); }
+#app #option-d:focus-visible,
+#app #option-d-night:focus-visible { box-shadow: 0 0 10px var(--ui-glow), inset 0 2px 6px rgba(0, 0, 0, 0.6); }
+
+/* ---------- Primary actions: ember crimson with gold trim ---------- */
+#app #submit-d,
+#app #submit-d-night,
+#app #transition-btn {
+    background: var(--ember);
+    color: var(--cream);
+    border: 2px solid #120a06;
+    box-shadow: 0 0 0 2px var(--gold), 3px 4px 0 2px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+#app #submit-d,
+#app #submit-d-night { min-height: 2.7em; padding: 0.5rem 1.4rem; }
+#app #submit-d:hover,
+#app #submit-d-night:hover,
+#app #transition-btn:hover { background: var(--ember-hi); }
+
+/* ---------- Secondary side buttons: dark wood + gold trim ---------- */
+#app[data-companion] .euphoria-btn,
+#app .euphoria-btn,
+#app .special-button,
+#app .transition-button:not(#transition-btn) {
+    background: var(--wood);
+    color: var(--cream);
+    border: 2px solid #120a06;
+    border-radius: 2px;
+    box-shadow: 0 0 0 2px var(--gold), 3px 4px 0 2px rgba(0, 0, 0, 0.4);
+}
+#app .euphoria-btn:hover,
+#app .special-button:hover,
+#app .transition-button:not(#transition-btn):hover {
+    background: var(--wood-hi);
+    transform: translateY(-1px);
+}
+#app[data-companion] .euphoria-btn:hover { background: var(--wood-hi); }
+#app[data-companion] .euphoria-btn[aria-pressed="true"],
+#app .euphoria-btn[aria-pressed="true"] {
+    background: rgba(150, 110, 40, 0.85);
+    box-shadow: 0 0 12px var(--gold), 0 0 0 2px var(--gold);
+}
+#app .euphoria-btn,
+#app .special-button,
+#app .transition-button { padding: 0.7rem 1.1rem; }
+
+/* ---------- Toolbar: dark glass instead of white pills ---------- */
+#app .utility-buttons .lang-select,
+#app .utility-buttons .spice-button,
+#app .utility-buttons .export-button,
+#app .utility-buttons .reset-button,
+#app .utility-buttons .settings-button {
+    background: rgba(20, 16, 14, 0.72);
+    color: var(--cream);
+    border: 1px solid rgba(218, 165, 90, 0.45);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+#app .utility-buttons button:hover,
+#app .utility-buttons .lang-select:hover { border-color: var(--gold); box-shadow: 0 0 8px rgba(218, 165, 90, 0.45); }
+#app .utility-buttons .lang-select option { background: #1c140e; color: var(--cream); }
+#app #demo-indicator {
+    background: rgba(20, 16, 14, 0.72);
+    color: #ffd27a;
+    border: 1px solid rgba(218, 165, 90, 0.45);
+}
+
+/* ---------- Sign: a slim floating badge, so it doesn't fight the neon in the art ---------- */
+#app .app-header .neon-sign {
+    font-size: 1.35rem;
+    padding: 0.45rem 1.2rem;
+    background: rgba(20, 12, 8, 0.45);
+    border: 1px solid rgba(218, 165, 90, 0.35);
+    box-shadow: none;
+    backdrop-filter: blur(2px);
+}

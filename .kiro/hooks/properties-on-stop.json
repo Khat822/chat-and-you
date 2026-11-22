@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Property tests when the agent finishes",
+      "trigger": "Stop",
+      "description": "When the agent stops, run the dependency-free property-based tests for the tag parser, reply de-duplication, privacy scrub and worldbook importer (tests/properties.test.js).",
+      "action": {
+        "type": "command",
+        "command": "node tests/properties.test.js",
+        "timeout": 60
+      }
+    }
+  ]
+}
